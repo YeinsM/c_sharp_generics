@@ -5,7 +5,7 @@ namespace YeinsBrainSoftware.StorageApp.Repositories
 {
     public class GenericRepository<T>
     {
-        private readonly List<T> _models = new(); //C# 9
+        protected readonly List<T> _models = new(); //C# 9
         public void Add(T model)
         {
             _models.Add(model);
@@ -18,5 +18,10 @@ namespace YeinsBrainSoftware.StorageApp.Repositories
                 System.Console.WriteLine(model);
             }
         }
+    }
+
+    public class GenericRepositoryWithRemove<T> : GenericRepository<T>
+    {
+        public void Remove(T model) => _models.Remove(model);
     }
 }
