@@ -7,7 +7,7 @@ namespace YeinsBrainSoftware.StackApp
         static void Main(string[] args)
         {
             StackDoubles();
-            //StackStrings();
+            StackStrings();
 
             Console.ReadLine();
         }
@@ -30,4 +30,12 @@ namespace YeinsBrainSoftware.StackApp
 
             Console.WriteLine($"Sum: {sum}");
         }
+
+        private static void StackStrings()
+        {
+            var stack = new SimpleStack();
+            stack.Push("Yeins Brain Software");
+            stack.Push("Pluralsight");
+        }
+    }
 }
