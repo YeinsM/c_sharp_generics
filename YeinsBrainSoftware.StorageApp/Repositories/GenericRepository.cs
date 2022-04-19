@@ -1,13 +1,21 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using YeinsBrainSoftware.StorageApp.Models;
 
 namespace YeinsBrainSoftware.StorageApp.Repositories
 {
-    public class GenericRepository<T>
+    public class GenericRepository<T> where T : EntityBase
     {
-        protected readonly List<T> _models = new(); //C# 9
+        private readonly List<T> _models = new(); //C# 9
+
+        public T GetById(int id)
+        {
+            return _models.Single(item => item.Id == id);
+        }
+
         public void Add(T model)
         {
+            model.Id = _models.Any() ? _models.Max(item => item.Id) + 1 : 1;
             _models.Add(model);
         }
 
@@ -18,10 +26,7 @@ namespace YeinsBrainSoftware.StorageApp.Repositories
                 System.Console.WriteLine(model);
             }
         }
-    }
 
-    public class GenericRepositoryWithRemove<T> : GenericRepository<T>
-    {
         public void Remove(T model) => _models.Remove(model);
     }
 }
