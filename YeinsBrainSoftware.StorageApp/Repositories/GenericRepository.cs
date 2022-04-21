@@ -4,7 +4,7 @@ using YeinsBrainSoftware.StorageApp.Models;
 
 namespace YeinsBrainSoftware.StorageApp.Repositories
 {
-    public class GenericRepository<T> where T : EntityBase
+    public class GenericRepository<T> where T : class, IEntity
     {
         private readonly List<T> _models = new(); //C# 9
 
